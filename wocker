@@ -6,7 +6,7 @@ RED=31
 USER=wocker
 DOCROOT=/var/www/wordpress
 
-image='wocker/wocker:latest'
+image='vesterde/wocker-beta'
 cname=''
 ports=''
 cid=''
