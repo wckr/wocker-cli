@@ -6,7 +6,7 @@ RED=31
 USER=wocker
 DOCROOT=/var/www/wordpress
 
-image='vesterde/wocker-dev'
+image='wocker/wocker:latest'
 cname=''
 ports=''
 cid=''
@@ -194,7 +194,7 @@ wocker_theme_test_usage() {
 }
 wocker_wordmove_usage() {
   echo ''
-  echo 'Usage: wocker wordmove COMMAND --ARG'
+  echo 'Usage: wocker wordmove COMMAND arg'
   echo ''
   echo 'Execute wordmove commands in the running container'
   echo 'See http://welaika.github.io/wordmove/'
