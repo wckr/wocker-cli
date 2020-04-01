@@ -245,7 +245,7 @@ case "$1" in
   #
   # wocker switch
   #
-  'switch' )
+  'start' | 'switch' )
 
     if [[ "$2" = '--help' ]]; then
       wocker_switch_usage
