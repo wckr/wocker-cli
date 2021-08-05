@@ -186,6 +186,19 @@ wocker_theme_test_usage() {
   echo ''
   echo '  LOCALE    Select which language you want to import. `en` and `ja` are available. If omitted, `en` will be imported.'
 }
+wocker_wordmove_usage() {
+  echo ''
+  echo 'Usage: wocker wordmove COMMAND arg'
+  echo ''
+  echo 'Execute wordmove commands in the running container'
+  echo 'See http://welaika.github.io/wordmove/'
+  echo ''
+  echo 'Commands:'
+  echo '    help           Describe available tasks or one specific task'
+  echo '    init           Generates a brand new Movefile'
+  echo '    pull           Pulls WP data from remote host to the local machine'
+  echo '    push           Pushes WP data from local machine to remote host'
+}
 
 case "$1" in
 
@@ -455,6 +468,27 @@ EOF
       fi
     else
       echo "No running container."
+    fi
+    ;;
+    
+  #
+  # wocker wp
+  #
+  'wordmove' )
+
+    if [[ "$2" = '--help' ]]; then
+      wocker_wordmove_usage
+    else
+      if [[ $(docker ps -q) ]]; then
+        cid=$(docker ps -q)
+        if [[ ! $cid =~ $'\n' ]]; then
+          if [[ "$2" = 'shell' ]]; then
+            docker exec -u $USER -it $cid wordmove ${@:2}
+          else
+            docker exec -u $USER $cid wordmove ${@:2}
+          fi
+        fi
+      fi
     fi
     ;;
 
